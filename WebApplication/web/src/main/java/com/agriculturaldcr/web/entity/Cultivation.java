@@ -1,8 +1,14 @@
 package com.agriculturaldcr.web.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Cultivation {
 	
+	@Id
 	public String cultivationId;
+	
 	public String cultivationType;
 	public int harvestAmount;
 	public String location;
@@ -12,8 +18,6 @@ public class Cultivation {
 	public Cultivation() {
 		
 	}
-
-	
 
 	public Cultivation(String cultivationId, String cultivationType, int harvestAmount, String location,
 			boolean availability, int farmerId) {
@@ -82,6 +86,13 @@ public class Cultivation {
 
 	public void setFarmerId(int farmerId) {
 		this.farmerId = farmerId;
+	}
+
+	@Override
+	public String toString() {
+		return "Cultivation [cultivationId=" + cultivationId + ", cultivationType=" + cultivationType
+				+ ", harvestAmount=" + harvestAmount + ", location=" + location + ", availability=" + availability
+				+ ", farmerId=" + farmerId + "]";
 	}
 
 	

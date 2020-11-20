@@ -1,6 +1,7 @@
 package com.agriculturaldcr.web.controller;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.agriculturaldcr.web.dao.CultivationDao;
 import com.agriculturaldcr.web.entity.Cultivation;
 import com.agriculturaldcr.web.service.CultivationService;
 
@@ -35,12 +37,14 @@ public class CultivationController {
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void add(@RequestBody Cultivation cultivation) {
+		//System.out.println(cultivation.toString());
 		cultivationService.add(cultivation);
 	}
 	
-	/*@PutMapping
-	 * used to update as POSTMAPPING
-	 */
+	/*@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void update(@RequestBody Cultivation cultivation) {
+		cultivationService.update(cultivation);
+	}*/
 	
 	@DeleteMapping(value="/{cultivationId}")
 	public void delete(@PathVariable("cultivationId") String id) {
