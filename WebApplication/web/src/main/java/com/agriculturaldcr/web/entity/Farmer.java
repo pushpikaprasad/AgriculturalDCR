@@ -1,14 +1,18 @@
 package com.agriculturaldcr.web.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Farmer {
-	
-	public String farmerName;
-	public String farmerMobile; //farmer_contact details
+
+	@Id
 	private int farmerId;
-	
+	public String farmerName;
+	public String farmerMobile; // farmer_contact details
+
 	public Farmer() {
-		
-	
+
 	}
 
 	public Farmer(String farmerName, String farmerMobile, int farmerId) {

@@ -1,13 +1,19 @@
 package com.agriculturaldcr.web.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Admin {
+
+	@Id
 	private int adminId;
 	private String adminUsername;
 	private String adminPassword;
 	public String adminName;
-	
+
 	public Admin() {
-		
+
 	}
 
 	public Admin(int adminId, String adminUsername, String adminPassword, String adminName) {
@@ -49,7 +55,5 @@ public class Admin {
 	public void setAdminName(String adminName) {
 		this.adminName = adminName;
 	}
-	
-	
 
 }

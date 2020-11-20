@@ -7,38 +7,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.agriculturaldcr.web.dao.CultivationDao;
+import com.agriculturaldcr.web.dao.FarmerRepository;
 import com.agriculturaldcr.web.entity.Cultivation;
 
 @Service
 public class CultivationService {
-	
-	@Autowired private CultivationDao cultivationDao;
-	
-	
-	public Cultivation view(String cultivationId) {		//view record
+
+	@Autowired
+	private CultivationDao cultivationDao;
+	@Autowired
+	private FarmerRepository farmerDao;
+
+	// search cultivation by id
+	public Optional<Cultivation> view(String cultivationId) { // view record
 		return cultivationDao.findById(cultivationId);
-		//return cultivationDao.findById(cultivationId);
 	}
-	
-	public Collection<Cultivation> viewAll(){ 	//view records
+
+	// view all cultivations
+	public Collection<Cultivation> viewAll() { // view records
 		return cultivationDao.findAll();
-		//return cultivationDao.findAll();
 	}
-	
-	public void add(Cultivation cultivation) {	//add record
-		cultivationDao.add(cultivation);
-		//cultivationDao.add(cultivation);
+
+	// add cultivation
+	public void add(Cultivation cultivation) { // add record
+		if (farmerDao.findById(cultivation.getFarmerId()) != null) {
+			cultivationDao.add(cultivation);
+		} else {
+			System.out.println("Farmer " + farmerDao.findById(cultivation.getFarmerId()).get().getFarmerName()
+					+ " does not exists in the system!");
+		}
 	}
-	
-/*	public void update(Cultivation cultivation) {	//update record
-		//update whole raw data or field???
-		
+
+	// update cultivation
+	public void update(Cultivation cultivation) { // update record
 		cultivationDao.update(cultivation);
-	}*/
-	
-	public void delete(String cultivationId) {	//delete record
-		cultivationDao.remove(cultivationId);
-		//cultivationDao.deleteById(cultivationId);
+	}
+
+	// delete cultivation
+	public void delete(String cultivationId) { // delete record
+		cultivationDao.delete(cultivationId);
 	}
 
 }

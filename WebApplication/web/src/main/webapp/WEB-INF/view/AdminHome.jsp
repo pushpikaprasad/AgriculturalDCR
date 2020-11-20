@@ -11,10 +11,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.4/angular-sanitize.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-   
-
+  
 </head>
 <body>
-<h1>${message}</h1>
+
+<h3><u>${title}</u></h3>
+
+<h4>${subtitle}</h4>
+
+<h6>${message}</h6>
+
 </body>
 </html>

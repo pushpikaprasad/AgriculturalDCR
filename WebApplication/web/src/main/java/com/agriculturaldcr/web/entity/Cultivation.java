@@ -5,18 +5,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Cultivation {
-	
+
 	@Id
 	public String cultivationId;
-	
+
 	public String cultivationType;
 	public int harvestAmount;
 	public String location;
 	public boolean availability;
-	public int farmerId;	//owner: String
-	
+	public int farmerId; // owner: String
+
 	public Cultivation() {
-		
+
 	}
 
 	public Cultivation(String cultivationId, String cultivationType, int harvestAmount, String location,
@@ -29,8 +29,6 @@ public class Cultivation {
 		this.availability = availability;
 		this.farmerId = farmerId;
 	}
-
-
 
 	public String getCultivationType() {
 		return cultivationType;
@@ -64,25 +62,17 @@ public class Cultivation {
 		this.availability = availability;
 	}
 
-
-
 	public String getCultivationId() {
 		return cultivationId;
 	}
-
-
 
 	public void setCultivationId(String cultivationId) {
 		this.cultivationId = cultivationId;
 	}
 
-
-
 	public int getFarmerId() {
 		return farmerId;
 	}
-
-
 
 	public void setFarmerId(int farmerId) {
 		this.farmerId = farmerId;
@@ -94,8 +84,5 @@ public class Cultivation {
 				+ ", harvestAmount=" + harvestAmount + ", location=" + location + ", availability=" + availability
 				+ ", farmerId=" + farmerId + "]";
 	}
-
-	
-	
 
 }

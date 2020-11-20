@@ -1,16 +1,22 @@
 package com.agriculturaldcr.web.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Officer {
+
+	@Id
 	private int officerId;
 	private String officerUsername;
 	private String officerPassword;
 	public String officerName;
 	public String workArea;
-	public String officerContactNumber; //mobile number
+	public String officerContactNumber; // mobile number
 	public char assignedBranch;
 
 	public Officer() {
-		
+
 	}
 
 	public Officer(int officerId, String officerUsername, String officerPassword, String officerName, String workArea,
@@ -80,9 +86,5 @@ public class Officer {
 	public void setAssignedBranch(char assignedBranch) {
 		this.assignedBranch = assignedBranch;
 	}
-	
-	
-	
-	
 
 }
