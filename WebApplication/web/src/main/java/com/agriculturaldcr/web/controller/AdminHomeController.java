@@ -30,16 +30,23 @@ public class AdminHomeController {
 	AdminService adminService;
 
 	// Admin home page
-	@GetMapping(value = { "/" }, produces = MediaType.TEXT_HTML_VALUE)
+	@GetMapping(produces = MediaType.TEXT_HTML_VALUE)
 	public ModelAndView welcomePage(String name, Model model) {
 		System.out.print("Admin control : welcome page!");
 		model.addAttribute("title", "Centralized Agricultural Data Collector and Reviewer System");
 		model.addAttribute("subtitle", "System Adiministrator Home Page");
 		model.addAttribute("message", "Welcome...!");
-
+		model.addAttribute("AdminId","1");
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("AdminHome");
 		return modelAndView;
+	}
+	
+	// view Admin
+	@GetMapping(value = { "/{adminId}"})
+	public Optional<Admin> viewAdmin(@PathVariable("adminId") int adminId){
+		return adminService.viewAdminById(adminId);
 	}
 
 	// update Admin
@@ -49,19 +56,19 @@ public class AdminHomeController {
 	}
 
 	// Delete Admin
-	@DeleteMapping(value = "/{id}")
-	public void deleteAdmin(@PathVariable("id") int id) {
-		adminService.deleteAdmin(id);
+	@DeleteMapping(value = "/{adminId}")
+	public void deleteAdmin(@PathVariable("adminId") int adminId) {
+		adminService.deleteAdmin(adminId);
 	}
 
 	// View Officers
-	@GetMapping(value = "/officers", produces = MediaType.TEXT_HTML_VALUE)
+	@GetMapping(value = "/officers")
 	public Collection<Officer> viewAllOffiers() {
 		return adminService.viewAllOfficers();
 	}
 
 	// View Officer
-	@GetMapping(value = "/officers/{officerId}", produces = MediaType.TEXT_HTML_VALUE)
+	@GetMapping(value = "/officers/{officerId}")
 	public Optional<Officer> viewOfficerById(@PathVariable("officerId") int id) {
 		return adminService.viewOfficerById(id);
 	}
@@ -85,13 +92,13 @@ public class AdminHomeController {
 	}
 
 	// view All Farmers
-	@GetMapping(value = { "/farmers" }, produces = MediaType.TEXT_HTML_VALUE)
+	@GetMapping(value = { "/farmers" })
 	public Collection<Farmer> viewAllFarmers() {
 		return adminService.viewAllFarmers();
 	}
 
 	// View Farmer
-	@GetMapping(value = "/farmers/{farmerId}", produces = MediaType.TEXT_HTML_VALUE)
+	@GetMapping(value = "/farmers/{farmerId}")
 	public Optional<Farmer> viewFarmer(@PathVariable("farmerId") int id) {
 		return adminService.viewFarmerById(id);
 	}
@@ -115,13 +122,13 @@ public class AdminHomeController {
 	}
 
 	// View Cultivations
-	@GetMapping(value = "/cultivations", produces = MediaType.TEXT_HTML_VALUE)
+	@GetMapping(value = "/cultivations")
 	public Collection<Cultivation> viewAllCultivations() {
 		return adminService.viewAllCultivations();
 	}
 
 	// View cultivation By Location
-	@GetMapping(value = "/cultivations/{location}", produces = MediaType.TEXT_HTML_VALUE)
+	@GetMapping(value = "/cultivations/{location}")
 	public Cultivation viewCultivationByLocation(@PathVariable("location") String location) {
 		return adminService.viewCultivationByPlace(location);
 	}

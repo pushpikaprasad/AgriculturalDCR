@@ -31,6 +31,11 @@ public class AdminService {
 	public Admin adminLoging(String username, String password) {
 		return adminDao.findAdmin(username, password);
 	}
+	
+	//View Admin
+	public Optional<Admin> viewAdminById(int adminId) {
+		return adminDao.findAdminById(adminId);
+	}
 
 	// Admin account creation
 	public void adminRegistration(Admin newAdmin) {

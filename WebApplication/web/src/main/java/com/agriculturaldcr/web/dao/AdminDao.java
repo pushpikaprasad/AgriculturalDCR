@@ -1,5 +1,7 @@
 package com.agriculturaldcr.web.dao;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.agriculturaldcr.web.entity.Admin;
@@ -14,6 +16,10 @@ public class AdminDao {
 		return adminRepository.findAdminByUsernameAndPassword(username, password);
 	}
 
+	public Optional<Admin> findAdminById(int adminId) {
+		return adminRepository.findById(adminId);
+	}
+	
 	public void addAdmin(Admin newAdmin) {
 		Admin admin = (Admin) newAdmin;
 		try {
