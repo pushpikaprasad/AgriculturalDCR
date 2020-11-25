@@ -33,6 +33,10 @@
 			dismissible : false
 		});
 	});
+	
+	
+	
+	
 </Script>
 
 <script>
@@ -44,6 +48,8 @@
 	// Admin Page controller
 	adminPageDetails.controller('adminPageData', function($scope, $http) {
 
+		
+		
 		$http.get('/Admin/${AdminId}').then(function(res) {
 			$scope.adminDetails = res.data; //Admin object data -- JSON format
 
@@ -53,16 +59,119 @@
 			$scope.cultivations = res.data; //All cultivation details
 
 		});
+		
+		
+		
+		$scope.Getcultivation = function() {
+			
+			$http.get('/Admin/cultivations').then(function(res) {
+				$scope.cultivations = res.data; //All cultivation details
 
-		var formdata = new FormData();
+			});
+		}
+		
 
+		$scope.Postcultivation = function (cultivationId, cultivationType, harvestAmount, location, availability, farmerId) {
+			var cultivationData = {
+					cultivationId: cultivationId, 
+					cultivationType: cultivationType, 
+					harvestAmount: harvestAmount, 
+					location: location, 
+					availability: availability, 
+					farmerId: farmerId
+
+			};
+			//Call the services
+			$http.post('/Admin/cultivations', JSON.stringify(cultivationData)).then(function (response) {
+
+				if (response.cultivationData)
+
+				console.log("Post Data Submitted Successfully!");
+				$scope.Getcultivation();
+
+				}, function (response) {	
+					console.log("Service not Exists");
+				});
+		};
+		
+		$scope.updateClick = function (cultivationId, cultivationType, harvestAmount, location, availability, farmerId) {
+			$scope.updatecultivationId = cultivationId;
+			$scope.updatecultivationType = cultivationType;
+			$scope.updateharvestAmount = harvestAmount;
+			$scope.updatelocation = location;
+			$scope.updateavailability = availability;
+			$scope.updatefarmerId = farmerId;
+		}
+		
+		$scope.Putcultivation = function (cultivationId, cultivationType, harvestAmount, location, availability, farmerId) {
+			
+			var cultivationData = {
+
+					cultivationId: cultivationId, 
+					cultivationType: cultivationType, 
+					harvestAmount: harvestAmount, 
+					location: location, 
+					availability: availability, 
+					farmerId: farmerId
+
+			};
+			
+			console.log(cultivationData);
+			
+			//Call the services
+			$http.put('/Admin/cultivations', JSON.stringify(cultivationData)).then(function (response) {
+				
+				if (response.cultivationData)
+
+				console.log("Update Data Submitted Successfully!");
+				$scope.Getcultivation();
+
+				}, function (response) {	
+					console.log("Service not Exists");
+				});
+		};
+		
+		$scope.deleteClick = function (deleteId) {
+			console.log(deleteId);
+			$scope.deletecultivationId = deleteId;
+			
+		}
+		
+		$scope.Deletecultivation = function (cultivationId) {
+			console.log(cultivationId);
+			
+			var url = '/Admin/cultivations/'+cultivationId;
+
+			//Call the service to delete data
+
+			$http.delete( url ).then(function (response) {
+
+			if (response.cultivationData)
+
+				console.log("Delete Data Submitted Successfully!");
+				$scope.Getcultivation();
+
+			}, function (response) {
+
+				console.log("Service not Exists");
+
+			});
+
+			};
 		//Add form function	
 
 		//Update form function
-
+		
 		//delete function
 
+		
 	});
+	
+	
+	
+	
+	
+	
 </script>
 
 </head>
@@ -82,13 +191,14 @@
 			<div class="col s9 m9 l9">
 				<h4>${title}</h4>
 				<div class="divider"></div>
-				<h6>${message}</h6>
+
 				<br>
 				<div class="card">
 					<a
 						class="waves-effect waves-light btn modal-trigger modal-close  light-green darken-1"
 						href="#AddCultivation">Add cultivation<i
 						class="material-icons right">playlist_add</i></a>
+
 					<div class="divider"></div>
 					<br>
 					<div class="highlight">
@@ -112,10 +222,14 @@
 								<td>{{i.farmerId}}</td>
 								<td><a
 									class="waves-effect waves-light btn modal-trigger modal-close  light-blue darken-1"
-									href="#UpdateCultivation"><i class="material-icons">edit</i></a></td>
+									href="#UpdateCultivation" value="i.cultivationId"
+									ng-click="updateClick(i.cultivationId,i.cultivationType,i.harvestAmount,i.location, i.availability,i.farmerId )"><i
+										class="material-icons">edit</i></a></td>
 								<td><a
 									class="waves-effect waves-light btn modal-trigger modal-close  red darken-1"
-									href="#DeleteCultivation"><i class="material-icons">delete</i></a></td>
+									href="#DeleteCultivation" value="i.cultivationId"
+									ng-click="deleteClick(i.cultivationId)"><i
+										class="material-icons">delete</i></a></td>
 								<td"></td>
 
 							</tr>
@@ -144,32 +258,32 @@
 						</div>
 
 					</div>
-					<form ng-submit="AddCultivationForm()">
+					<form>
 						<div class="row">
 							<div class="input-field col s6">
 								<input id="cultivationId" name="cultivationId" type="text"
-									class="validate" ng-model="cultivations.cultivationId">
-								<label for="cultivationId">Cultivation ID</label>
+									class="validate" ng-model="cultivationId"> <label
+									for="cultivationId">Cultivation ID</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s6">
 								<input id="cultivationType" name="cultivationType" type="text"
-									class="validate" ng-model="cultivations.cultivationType">
-								<label for="cultivationType">Cultivation Type</label>
+									class="validate" ng-model="cultivationType"> <label
+									for="cultivationType">Cultivation Type</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s6">
 								<input id="harvestAmount" name="harvestAmount" type="number"
-									class="validate" ng-model="cultivations.harvestAmount">
-								<label for="harvestAmount">Harvest Amount</label>
+									class="validate" ng-model="harvestAmount"> <label
+									for="harvestAmount">Harvest Amount</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s6">
 								<input id="location" name="location" type="text"
-									class="validate" ng-model="cultivations.location"> <label
+									class="validate" ng-model="location"> <label
 									for="location">Location</label>
 							</div>
 						</div>
@@ -177,11 +291,9 @@
 							<div class="input-field col s6">
 								<p>
 									<label><input class="with-gap" name="availability"
-										type="radio" id="availabilityTrue"
-										ng-model="cultivations.availability" /> <span>Available</span></label>
-
-									<label><input class="with-gap" name="availability"
-										ng-model="cultivations.availability" type="radio"
+										type="radio" id="availabilityTrue" ng-model="availability" />
+										<span>Available</span></label> <label><input class="with-gap"
+										name="availability" ng-model="availability" type="radio"
 										id="availabilityFalse" /> <span>Not Available</span></label>
 								</p>
 
@@ -190,7 +302,7 @@
 						<div class="row">
 							<div class="input-field col s6">
 								<input id="farmerId" name="farmerId" type="text"
-									class="validate" ng-model="cultivations.farmerId"> <label
+									class="validate" ng-model="farmerId"> <label
 									for="farmerId">Farmer ID</label>
 							</div>
 						</div>
@@ -198,7 +310,8 @@
 						<div class="modal-footer">
 
 							<button class="btn waves-effect waves-light modal-close"
-								type="submit" name="action" id="addAction">
+								type="submit" name="action" id="addAction"
+								ng-click="Postcultivation(cultivationId, cultivationType, harvestAmount, location, availability, farmerId)">
 								Add <i class="material-icons right">playlist_add</i>
 							</button>
 
@@ -227,54 +340,70 @@
 						</div>
 
 					</div>
-					<form ng-submit="">
+					<form>
+
 						<div class="row">
 							<div class="input-field col s6">
-								<input disabled id="cultivationId" type="text" class="validate">
-								<label for="cultivationId">Cultivation ID</label>
+								<input disabled id="UpdateCultivationId" type="text"
+									class="validate" placeholder="updatecultivationId"
+									value="updatecultivationId" ng-model="updatecultivationId">
+								<label for="UpdateCultivationId">Cultivation ID</label>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="updateCultivationType" type="text"
+									placeholder="updatecultivationType"
+									value="updatecultivationType" class="validate"
+									ng-model="updatecultivationType"> <label
+									for="updateCultivationType">Cultivation Type</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s6">
-								<input id="cultivationType" type="text" class="validate">
-								<label for="cultivationType">Cultivation Type</label>
+								<input id="updateHarvestAmount" type="number"
+									placeholder="updateharvestAmount" class="validate"
+									ng-model="updateharvestAmount"> <label
+									for="updateHarvestAmount">Harvest Amount</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s6">
-								<input id="harvestAmount" type="number" class="validate">
-								<label for="harvestAmount">Harvest Amount</label>
-							</div>
-						</div>
-						<div class="row">
-							<div class="input-field col s6">
-								<input id="location" type="text" class="validate"> <label
-									for="location">Location</label>
+								<input id="updateLocation" type="text" class="validate"
+									placeholder="updatelocation" value="updatelocation"
+									ng-model="updatelocation"> <label for="updateLocation">Location</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s6">
 								<p>
 									<label><input class="with-gap" name="availabilty"
-										type="radio" id="availabilityTrue" /> <span>Available</span></label>
-
-									<label><input class="with-gap" name="availabilty"
-										type="radio" id="availabilityFalse" /> <span>Not
-											Available</span></label>
+										placeholder="updateavailability" value="updateavailability"
+										ng-model="updateavailability" type="radio"
+										id="UpdateAvailabilityTrue" /> <span>Available</span></label> <label><input
+										class="with-gap" name="availabilty"
+										placeholder="updateavailability" value="updateavailability"
+										ng-model="updateavailability" type="radio"
+										id="UpdateAvailabilityFalse" /> <span>Not Available</span></label>
 								</p>
 
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s6">
-								<input id="farmerId" type="text" class="validate"> <label
-									for="farmerId">Farmer ID</label>
+								<input id="UpdateFarmerId" type="text" class="validate"
+									placeholder="updatefarmerId" value="updatefarmerId"
+									ng-model="updatefarmerId"> <label for="UpdateFarmerId">Farmer
+									ID</label>
 							</div>
 						</div>
 
 						<div class="modal-footer">
 
 							<button class="btn waves-effect waves-light modal-close"
+								ng-click="Putcultivation(updatecultivationId, updatecultivationType, updateharvestAmount, updatelocation, updateavailability, updatefarmerId)"
 								type="submit" name="action">
 								Update <i class="material-icons right">playlist_add_check</i>
 							</button>
@@ -292,7 +421,8 @@
 				<div class="modal-content">
 					<div class="raw">
 						<div class="col s11 m11 l11">
-							<h5>Do you need to delete this record?</h5>
+							<h5>Do you need to delete this record
+								{{deletecultivationId}} ?</h5>
 						</div>
 						<div class="col s1 m1 l1">
 							<div class="right-align">
@@ -307,29 +437,18 @@
 
 
 
-					<form ng-submit="">
-						<div class="row">
-							<div class="input-field col s6">
-								<input disabled id="cultivationId" type="text" class="validate">
-								<label for="cultivationId">Cultivation ID</label>
-							</div>
-						</div>
-						<div class="row">
-							<div class="input-field col s6">
-								<input disabled id="cultivationType" type="text"
-									class="validate"> <label for="cultivationType">Cultivation
-									Type</label>
-							</div>
-						</div>
-						<div class="modal-footer">
+					<form>
+						<div class="right-align">
 							<button
 								class="btn waves-effect waves-light modal-close blue-text blue lighten-5">
 								No</button>
 							<button
 								class="btn waves-effect waves-light modal-close red darken-1"
-								type="submit" name="action">Delete</button>
+								type="submit" name="action"
+								ng-click="Deletecultivation(deletecultivationId)">Delete</button>
 
 						</div>
+
 
 					</form>
 				</div>
