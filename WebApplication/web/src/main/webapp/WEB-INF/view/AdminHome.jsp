@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html ng-app="adminPageDetails">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -18,8 +18,8 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<Script>
+	rel="stylesheet"></script>
+<script>
 	$(document).ready(function() {
 		$('.modal').modal();
 		$('#AddCultivation').on('click', function() {
@@ -34,10 +34,11 @@
 		});
 	});
 	
+	$(document).ready(function(){
+	    $('.sidenav').sidenav();
+	  });
 	
-	
-	
-</Script>
+</script>
 
 <script>
 	// Admin Page module
@@ -175,17 +176,44 @@
 </script>
 
 </head>
-<body>
+<body ng-controller="adminPageData">
 
-	<div class="page-container" ng-app="adminPageDetails"
-		ng-controller="adminPageData">
+
+<div class="page-container" >		
+		<nav class="blue lighten-4" >
+			<div class="nav-wrapper">
+				<a href="#" data-target="slide-out"
+					class="sidenav-trigger show-on-large"><i
+					class="material-icons large">menu</i></a> <span class="brand-logo">{{adminDetails.adminName}}</span>
+				<!--  <ul id="nav-mobile" class="right hide-on-med-and-down">
+	        <li><a href="sass.html">Sass</a></li>
+	        <li><a href="badges.html">Components</a></li>
+	        <li><a href="collapsible.html">JavaScript</a></li>
+	      </ul>-->
+			</div>
+		</nav>
+		<div id="nav">
+		<ul id="slide-out" class="sidenav">
+			<li><div class="user-view">
+					<div class="background blue darken-3">
+						<!-- <img src="images/office.jpg">-->
+					</div>
+					<!--  <a href="#user"><img class="circle" src="images/yuna.jpg"></a>-->
+					<a href="#name"><span class="white-text name">{{adminDetails.adminName}}</span></a>
+					<a href="#email"><span class="white-text email">Admin@gmail.com</span></a>
+				</div></li>
+			<li><a class="waves-effect" href="/Admin">Home</a></li>
+			<li><div class="divider"></div></li>
+			<li><a  class="subheader">Manage</a></li>
+			<li><a class="waves-effect" href="/Admin/manage-officers">Officers</a></li>
+		</ul>
+		
+		
+		</div>
+
 		<div class="row">
 			<!-- Start Side Navigation -->
-			<div class="col s2 m2 l2" ng-model="adminDetails">
-				<h6>{{adminDetails.adminName}}</h6>
-
-
-			</div>
+			<div class="col s2 m2 l2 blue lighten-4"></div>
 			<!-- End Side Navigation -->
 			<!--Start  main session -->
 			<div class="col s9 m9 l9">
@@ -237,9 +265,10 @@
 					</div>
 				</div>
 				<br>
-
 			</div>
 			<!-- End main session -->
+
+			<!-- CULTIVATIONS -->
 
 			<!-- Start Add cultivation form -->
 			<div id="AddCultivation" class="modal">
@@ -256,7 +285,6 @@
 								</button>
 							</div>
 						</div>
-
 					</div>
 					<form>
 						<div class="row">
@@ -296,7 +324,6 @@
 										name="availability" ng-model="availability" type="radio"
 										id="availabilityFalse" /> <span>Not Available</span></label>
 								</p>
-
 							</div>
 						</div>
 						<div class="row">
@@ -306,20 +333,15 @@
 									for="farmerId">Farmer ID</label>
 							</div>
 						</div>
-
 						<div class="modal-footer">
-
 							<button class="btn waves-effect waves-light modal-close"
 								type="submit" name="action" id="addAction"
 								ng-click="Postcultivation(cultivationId, cultivationType, harvestAmount, location, availability, farmerId)">
 								Add <i class="material-icons right">playlist_add</i>
 							</button>
-
 						</div>
-
 					</form>
 				</div>
-
 			</div>
 			<!-- End Add cultivation form -->
 
@@ -338,10 +360,8 @@
 								</button>
 							</div>
 						</div>
-
 					</div>
 					<form>
-
 						<div class="row">
 							<div class="input-field col s6">
 								<input disabled id="UpdateCultivationId" type="text"
@@ -350,8 +370,6 @@
 								<label for="UpdateCultivationId">Cultivation ID</label>
 							</div>
 						</div>
-
-
 						<div class="row">
 							<div class="input-field col s6">
 								<input id="updateCultivationType" type="text"
@@ -388,7 +406,6 @@
 										ng-model="updateavailability" type="radio"
 										id="UpdateAvailabilityFalse" /> <span>Not Available</span></label>
 								</p>
-
 							</div>
 						</div>
 						<div class="row">
@@ -399,20 +416,15 @@
 									ID</label>
 							</div>
 						</div>
-
 						<div class="modal-footer">
-
 							<button class="btn waves-effect waves-light modal-close"
 								ng-click="Putcultivation(updatecultivationId, updatecultivationType, updateharvestAmount, updatelocation, updateavailability, updatefarmerId)"
 								type="submit" name="action">
 								Update <i class="material-icons right">playlist_add_check</i>
 							</button>
-
 						</div>
-
 					</form>
 				</div>
-
 			</div>
 			<!-- End Update cultivation form -->
 
@@ -432,11 +444,7 @@
 								</button>
 							</div>
 						</div>
-
 					</div>
-
-
-
 					<form>
 						<div class="right-align">
 							<button
@@ -446,15 +454,33 @@
 								class="btn waves-effect waves-light modal-close red darken-1"
 								type="submit" name="action"
 								ng-click="Deletecultivation(deletecultivationId)">Delete</button>
-
 						</div>
-
-
 					</form>
 				</div>
-
 			</div>
 			<!-- End Update cultivation form -->
+
+			<!-- END CULTIVATIONS -->
+
+			<!-- FARMER -->
+			<div id="FarmerModal" class="modal">
+				<div class="modal-content">
+					<div class="raw">
+						<div class="col s11 m11 l11">
+							<h3>Farmer Details</h3>
+						</div>
+						<div class="col s1 m1 l1">
+							<div class="right-align">
+								<button
+									class="modal-close btn waves-effect blue-text waves-light light darken-1 ">
+									<i class="material-icons">close</i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END FARMER -->
 
 		</div>
 	</div>
