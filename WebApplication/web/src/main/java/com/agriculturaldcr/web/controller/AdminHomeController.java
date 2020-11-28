@@ -43,7 +43,7 @@ public class AdminHomeController {
 		return modelAndView;
 	}
 	
-	// Admin home page
+	// Admin manage-officer page
 		@GetMapping(value = { "/manage-officers"}, produces = MediaType.TEXT_HTML_VALUE)
 		public ModelAndView officerControlPage(String name, Model model) {
 			System.out.print("Admin control : welcome page!");

@@ -27,7 +27,7 @@
 		$("#AddCultivation").modal({
 			dismissible : false
 		});
-		$('#Updateultivation').on('click', function() {
+		$('#UpdateCultivation').on('click', function() { //<------check Updateultivation usage
 		});
 		$("#UpdateCultivation").modal({
 			dismissible : false
@@ -238,7 +238,7 @@
 								<td>Location</td>
 								<td>Availability</td>
 								<td>Farmer ID</td>
-								<td"></td>
+								
 
 							</tr>
 							<tr ng-repeat="i in cultivations" class="light-green lighten-4">
@@ -458,29 +458,9 @@
 					</form>
 				</div>
 			</div>
-			<!-- End Update cultivation form -->
+			<!-- End Delete cultivation form -->
 
 			<!-- END CULTIVATIONS -->
-
-			<!-- FARMER -->
-			<div id="FarmerModal" class="modal">
-				<div class="modal-content">
-					<div class="raw">
-						<div class="col s11 m11 l11">
-							<h3>Farmer Details</h3>
-						</div>
-						<div class="col s1 m1 l1">
-							<div class="right-align">
-								<button
-									class="modal-close btn waves-effect blue-text waves-light light darken-1 ">
-									<i class="material-icons">close</i>
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- END FARMER -->
 
 		</div>
 	</div>
