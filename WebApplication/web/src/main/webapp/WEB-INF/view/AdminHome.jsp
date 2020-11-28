@@ -4,7 +4,7 @@
 <html ng-app="adminPageDetails">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>AgriculturalDCR</title>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
 	integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
@@ -178,18 +178,14 @@
 </head>
 <body ng-controller="adminPageData">
 
-
-<div class="page-container" >		
-		<nav class="blue lighten-4" >
+<nav class="blue-grey darken-1" >
 			<div class="nav-wrapper">
 				<a href="#" data-target="slide-out"
 					class="sidenav-trigger show-on-large"><i
 					class="material-icons large">menu</i></a> <span class="brand-logo">{{adminDetails.adminName}}</span>
-				<!--  <ul id="nav-mobile" class="right hide-on-med-and-down">
-	        <li><a href="sass.html">Sass</a></li>
-	        <li><a href="badges.html">Components</a></li>
-	        <li><a href="collapsible.html">JavaScript</a></li>
-	      </ul>-->
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+	        <li><a href="/"><i class="material-icons large">power_settings_new</i></a></li>
+	      </ul>
 			</div>
 		</nav>
 		<div id="nav">
@@ -206,10 +202,17 @@
 			<li><div class="divider"></div></li>
 			<li><a  class="subheader">Manage</a></li>
 			<li><a class="waves-effect" href="/Admin/manage-officers">Officers</a></li>
+			<li><div class="divider"></div></li>
+			<li><a class="waves-effect" href="/Admin/settings">Settings</a></li>
 		</ul>
 		
 		
 		</div>
+		
+		
+		
+<div class="page-container" >		
+		
 
 		<div class="row">
 			<!-- Start Side Navigation -->

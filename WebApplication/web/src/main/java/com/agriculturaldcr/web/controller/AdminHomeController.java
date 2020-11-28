@@ -46,11 +46,20 @@ public class AdminHomeController {
 	// Admin manage-officer page
 		@GetMapping(value = { "/manage-officers"}, produces = MediaType.TEXT_HTML_VALUE)
 		public ModelAndView officerControlPage(String name, Model model) {
-			System.out.print("Admin control : welcome page!");
 			model.addAttribute("AdminId","1");
 			
 			ModelAndView modelAndView = new ModelAndView();
 			modelAndView.setViewName("manage-officers");
+			return modelAndView;
+		}
+		
+	// Admin settings page
+		@GetMapping(value = { "/settings"}, produces = MediaType.TEXT_HTML_VALUE)
+		public ModelAndView officerSettingsPage(String name, Model model) {
+			model.addAttribute("AdminId","1");
+			
+			ModelAndView modelAndView = new ModelAndView();
+			modelAndView.setViewName("admin_settings");
 			return modelAndView;
 		}
 	

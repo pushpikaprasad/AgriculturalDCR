@@ -4,7 +4,7 @@
 <html ng-app="adminPageDetails">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>AgriculturalDCR</title>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
 	integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
@@ -164,19 +164,15 @@
 
 </head>
 <body ng-controller="adminPageData">    
-    
- <div class="page-container">
-	
-	<nav class="blue lighten-4" >
+ 
+ 	<nav class="blue-grey darken-1" >
 			<div class="nav-wrapper">
 				<a href="#" data-target="slide-out"
 					class="sidenav-trigger show-on-large"><i
 					class="material-icons large">menu</i></a> <span class="brand-logo">{{adminDetails.adminName}}</span>
-				<!--  <ul id="nav-mobile" class="right hide-on-med-and-down">
-	        <li><a href="sass.html">Sass</a></li>
-	        <li><a href="badges.html">Components</a></li>
-	        <li><a href="collapsible.html">JavaScript</a></li>
-	      </ul>-->
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+	        <li><a href="/"><i class="material-icons large">power_settings_new</i></a></li>
+	      </ul>
 			</div>
 		</nav>
 		<div id="nav">
@@ -193,10 +189,13 @@
 			<li><div class="divider"></div></li>
 			<li><a  class="subheader">Manage</a></li>
 			<li><a class="waves-effect" href="/Admin/manage-officers">Officers</a></li>
+			<li><div class="divider"></div></li>
+			<li><a class="waves-effect" href="/Admin/settings">Settings</a></li>
 		</ul>
 		</div>
-		<div class="divider"></div>	
-		
+    
+ <div class="page-container">
+
 		<div id="officer_details" class="row">
 		
 			<div class="col s2 m2 l2 center-align">
@@ -215,7 +214,7 @@
 								<td>Work Area</td>
 								<td>Contact No.</td>
 								<td>Branch</td>
-								<td colspan="2"><a class="waves-effect waves-light btn modal-trigger black-text #aabb97"
+								<td colspan="2" class="center-align"><a class="waves-effect waves-light btn modal-trigger black-text #aabb97"
 						href="#AddOfficer">Add Officer<i
 						class="material-icons right">playlist_add</i></a></td>
 							</tr class="#fffffb">
@@ -227,12 +226,12 @@
 								<td>{{i.workArea}}</td>
 								<td>{{i.officerContactNumber}}</td>
 								<td>{{i.assignedBranch}}</td>
-								<td><a
+								<td class="center-align"><a
 									class="waves-effect waves-light btn modal-trigger modal-close  light-blue darken-1"
 									href="#UpdateOfficer" value="i.officerId"
 									ng-click="updateClick(i.officerId,i.officerUsername,i.officerPassword, i.officerName, i.workArea, i.officerContactNumber,i.assignedBranch)"><i
 										class="material-icons">edit</i></a></td>
-								<td><a
+								<td class="center-align"><a
 									class="waves-effect waves-light btn modal-trigger modal-close  red darken-1"
 									href="#DeleteOfficer" value="i.cultivationId"
 									ng-click="deleteClick(i.officerId, i.officerName)"><i
