@@ -49,5 +49,9 @@ public class CultivationDao {
 	public Cultivation viewCultivationByPlace(String location) {
 		return cultivationRepo.viewCultivationsByPlace(location);
 	}
+	
+	public Collection<Cultivation> viewCultivationByFarmerId(int FramerId) {
+		return cultivationRepo.viewCultivationByFarmerId(FramerId);
+	}
 
 }

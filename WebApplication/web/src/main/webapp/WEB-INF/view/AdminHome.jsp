@@ -182,7 +182,7 @@
 			<div class="nav-wrapper">
 				<a href="#" data-target="slide-out"
 					class="sidenav-trigger show-on-large"><i
-					class="material-icons large">menu</i></a> <span class="brand-logo">{{adminDetails.adminName}}</span>
+					class="material-icons large">menu</i></a> <a  href="/Admin"><span class="brand-logo">{{adminDetails.adminName}}</span></a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 	        <li><a href="/"><i class="material-icons large">power_settings_new</i></a></li>
 	      </ul>

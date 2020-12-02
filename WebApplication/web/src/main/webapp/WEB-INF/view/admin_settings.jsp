@@ -79,7 +79,7 @@ $scope.putAdmin = function (adminName,adminUsername,adminPassword){
 			<div class="nav-wrapper ">
 				<a href="#" data-target="slide-out"
 					class="sidenav-trigger show-on-large"><i
-					class="material-icons large">menu</i></a> <span class="brand-logo">{{adminDetails.adminName}}</span>
+					class="material-icons large">menu</i></a> <a  href="/Admin"><span class="brand-logo">{{adminDetails.adminName}}</span></a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 	        <li><a href="/"><i class="material-icons large">power_settings_new</i></a></li>
 	      </ul>
@@ -110,7 +110,7 @@ $scope.putAdmin = function (adminName,adminUsername,adminPassword){
 			<div class="col s3 m3 l3  center-align">
 				<h4>SETTINGS</h4>
 			</div>
-			<div class="col s9 m9 l9 center-align">
+			<div class="col s8 m8 l8 center-align">
 			<div class="card">
 			<form class="highlight responsive-table">
 					<table >
@@ -149,11 +149,9 @@ $scope.putAdmin = function (adminName,adminUsername,adminPassword){
 						</td></tr>
 						<tr>
 						<td></td>
-						<td>
-						<button class="btn waves-effect waves-light blue lighten-5 black-text" type="reset" name="reset" id="cancelChange">
-								Reset
-							</button>
-						<button class="btn waves-effect waves-light" type="submit" name="action" id="changeDetails"
+						<td class="right-align">
+						
+						<button class="btn waves-effect waves-light " type="submit" name="action" id="changeDetails"
 								ng-click="putAdmin(updateadminName,updateadminUsername,updateadminPassword)">
 								Save
 							</button>

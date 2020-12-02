@@ -47,5 +47,11 @@ public class CultivationService {
 	public void delete(String cultivationId) { // delete record
 		cultivationDao.delete(cultivationId);
 	}
+	 
+	//get farmer name
+	public String viewFarmerName(String cultivationId) { // add record
+		String farmerName = farmerDao.findById(cultivationDao.findById(cultivationId).get().getFarmerId()).get().getFarmerName(); 
+		return farmerName;
+	}
 
 }
