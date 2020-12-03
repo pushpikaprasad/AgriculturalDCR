@@ -20,6 +20,18 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 </script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.modal').modal();
+	$('#Login').on('click', function() {
+	});
+	$("#Login").modal({
+		dismissible : true
+	});
+});
+</script>
+
 <script>
 var homePageDetails = angular.module('homePageDetails', []);
 
@@ -68,6 +80,9 @@ homePageDetails.controller('homePageData', function($scope, $http) {
 .page-footer {
         background-color: black;
     }
+#topic-content{
+	padding-left: 12px !important;
+}
  body {
      display: flex;
      min-height: 120vh;
@@ -87,7 +102,7 @@ homePageDetails.controller('homePageData', function($scope, $http) {
 			<div class="nav-wrapper">
 				<a  href="/"><span class="brand-logo"><i class="material-icons large left">eco</i>AgriculturalDCR</span></a>
 				<ul id="nav-mobile" class="right">
-	        <li><a href="/"><i class="material-icons large right">login</i>LOGIN</a></li>
+	        <li><a href="#Login" class="waves-effect waves-light modal-trigger modal-close"><i class="material-icons large right">login</i>LOGIN</a></li>
 	      </ul>
 			</div>
 		</nav>
@@ -97,12 +112,12 @@ homePageDetails.controller('homePageData', function($scope, $http) {
 		
 		</div>
 		<div class="row">
-			<div class="row" id="filer">
+			<div class="row" id="topic-content">
 			<h4>CULTIVATION DETAILS</h4>
 			</div>
 			
 			<div class="row">
-				<div class="col s9 offset-s1 m9 offset-m1 l9 offset-l1 z-depth-5" id="table">
+				<div class="col s10 offset-s1 m10 offset-m1 l10 offset-l1 z-depth-5 center-align" id="table">
 				<table>
 					<tr >
 						<th>Cultivation Type</th>
@@ -116,7 +131,6 @@ homePageDetails.controller('homePageData', function($scope, $http) {
 						<td>{{i.harvestAmount}}</td>
 						<td>{{i.availability}}</td>
 						<td>{{i.farmerName[0]}}</td>
-						<!--  <td ng-model="getFarmerName(i.cultivationId)">{{farmerName}}</td>-->
 						<td>{{i.location}}</td>
 					</tr>
 				</table>
@@ -126,7 +140,48 @@ homePageDetails.controller('homePageData', function($scope, $http) {
 		</div>
 	</div>
 	
-	
+	<div id="Login" class="modal">
+	<div class="modal-content">
+					<form class="login-form">
+				        <div class="row">
+				        </div>
+				        <div class="row">
+				          <div class="input-field col s12">
+				            <i class="material-icons prefix">person_outline</i>
+				            <input class="validate" id="username" type="text">
+				            <label for="username" data-error="wrong" data-success="right">Username</label>
+				          </div>
+				        </div>
+				        <div class="row">
+				          <div class="input-field col s12">
+				            <i class="material-icons prefix">lock_outline</i>
+				            <input id="password" type="password">
+				            <label for="password">Password</label>
+				          </div>
+				        </div>
+				        <!-- <div class="row">          
+				          <div class="input-field col s12 m12 l12  login-text">
+				              <input type="checkbox" id="remember-me" />
+				              <label for="remember-me">Remember me</label>
+				          </div>
+				        </div> -->
+				        <div class="row">
+				          <div class="input-field col s12">
+				            <a href="#" class="btn waves-effect waves-light col s12">Login</a>
+				          </div>
+				        </div>
+				        <!--  <div class="row">
+				          <div class="input-field col s6 m6 l6">
+				            <p class="margin medium-small"><a href="#">Register Now!</a></p>
+				          </div>
+				          <div class="input-field col s6 m6 l6">
+				              <p class="margin right-align medium-small"><a href="#">Forgot password?</a></p>
+				          </div>          
+				        </div>-->
+				
+				      </form>
+				</div>
+	</div>
 	 <footer class="page-footer ">
           <div class="container">
             <div class="row">
