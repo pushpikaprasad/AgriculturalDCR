@@ -24,7 +24,7 @@
 		$('.modal').modal();
 		$('#AddOfficer').on('click', function() {
 		});
-		$("#AddOffier").modal({
+		$("#AddOfficer").modal({
 			dismissible : false
 		});
 		$('#UpdateOfficer').on('click', function() {
@@ -103,7 +103,7 @@
 			$scope.updateofficerName = officerName;
 			$scope.updateworkArea = workArea;
 			$scope.updateofficerContactNumber = officerContactNumber;
-			$scope.updatessignedBranch = assignedBranch;
+			$scope.updateassignedBranch = assignedBranch;
 		}
 		
 		$scope.putOfficer = function (officerId,officerUsername,officerPassword, officerName, workArea, officerContactNumber,assignedBranch) {
@@ -189,7 +189,8 @@
 			<li><div class="divider"></div></li>
 			<li><a  class="subheader">Manage</a></li>
 			<li><a class="waves-effect" href="/Admin/manage-officers">Officers</a></li>
-			<li><div class="divider"></div></li>
+			<li><a class="waves-effect" href="/Admin/manage-farmers">Farmers</a></li>
+			<li><a  class="subheader"></a></li>
 			<li><a class="waves-effect" href="/Admin/settings">Settings</a></li>
 		</ul>
 		</div>
@@ -406,8 +407,8 @@
 						<div class="modal-footer">
 							<button class="btn waves-effect waves-light modal-close"
 								type="submit" name="action" id="addAction"
-								ng-click="postOfficer(updateofficerId,updateofficerUsername,updateofficerPassword,updateofficerName, updateworkArea, updateofficerContactNumber,updateassignedBranch)">
-								Add <i class="material-icons right">playlist_add</i>
+								ng-click="putOfficer(updateofficerId,updateofficerUsername,updateofficerPassword,updateofficerName, updateworkArea, updateofficerContactNumber,updateassignedBranch)">
+								Update <i class="material-icons right">published_with_changes</i>
 							</button>
 						</div>
 					</form>

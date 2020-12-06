@@ -24,14 +24,14 @@ public class OfficerService {
 	@Autowired
 	public OfficerDao officerDao;
 
-	// officer logging
-	public Officer officerLoging(String username, String password) {
-		return officerDao.findOfficer(username, password);
-	}
-
 	// officer account creation
 	public void officerRegistration(Officer officer) {
 		officerDao.addOfficer(officer);
+	}
+	
+	// view officer by Id
+	public Optional<Officer> viewOfficerById(int officerId){
+		return officerDao.findOfficerById(officerId);
 	}
 
 	// update officer account

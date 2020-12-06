@@ -97,9 +97,10 @@ $scope.putAdmin = function (adminName,adminUsername,adminPassword){
 				</div></li>
 			<li><a  class ="waves-effect" href="/Admin">Home</a></li>
 			<li><div class="divider"></div></li>
-			<li><a  class="subheader">Manage</a></li>
+			<li><a  class="subheader">Manage</a></li>			
 			<li><a class="waves-effect" href="/Admin/manage-officers">Officers</a></li>
-			<li><div class="divider"></div></li>
+			<li><a class="waves-effect" href="/Admin/manage-farmers">Farmers</a></li>
+			<li><a  class="subheader"></a></li>
 			<li><a class="waves-effect" href="/Admin/settings">Settings</a></li>
 		</ul>
 		</div>	

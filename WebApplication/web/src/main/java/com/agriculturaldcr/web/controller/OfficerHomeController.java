@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.agriculturaldcr.web.entity.Admin;
 import com.agriculturaldcr.web.entity.Cultivation;
 import com.agriculturaldcr.web.entity.Farmer;
 import com.agriculturaldcr.web.entity.Officer;
@@ -28,17 +29,42 @@ public class OfficerHomeController {
 	public OfficerService officerService;
 
 	// Officer home page
-	@GetMapping(value = { "/" }, produces = MediaType.TEXT_HTML_VALUE)
+	@GetMapping(produces = MediaType.TEXT_HTML_VALUE)
 	public ModelAndView welcomePage(String name, Model model) {
 		System.out.print("Officer control : welcome page!");
 		model.addAttribute("title", "Centralized Agricultural Data Collector and Reviewer System");
 		model.addAttribute("subtitle", "Officer Home Page");
 		model.addAttribute("message", "Welcome...!");
+		model.addAttribute("OfficerId","1");
 
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("OfficerHome");
 		return modelAndView;
 	}
+	// Officer manage-farmer page
+			@GetMapping(value = { "/manage-farmers"}, produces = MediaType.TEXT_HTML_VALUE)
+			public ModelAndView officerControlPage(String name, Model model) {
+				model.addAttribute("OfficerId","1");
+				
+				ModelAndView modelAndView = new ModelAndView();
+				modelAndView.setViewName("manage-farmers");
+				return modelAndView;
+			}
+			// Officer settings page
+			@GetMapping(value = { "/settings"}, produces = MediaType.TEXT_HTML_VALUE)
+			public ModelAndView officerSettingsPage(String name, Model model) {
+				model.addAttribute("OfficerId","1");
+				
+				ModelAndView modelAndView = new ModelAndView();
+				modelAndView.setViewName("officer_settings");
+				return modelAndView;
+			}
+	
+	// view Officer
+		@GetMapping(value = { "/{officerId}"})
+		public Optional<Officer> viewAdmin(@PathVariable("officerId") int officerId){
+			return officerService.viewOfficerById(officerId);
+		}
 
 	// Update Officer Details
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -47,7 +73,7 @@ public class OfficerHomeController {
 	}
 
 	// view All Farmers
-	@GetMapping(value = { "/farmers" }, produces = MediaType.TEXT_HTML_VALUE)
+	@GetMapping(value = { "/farmers" })
 	public Collection<Farmer> viewAllFarmers() {
 		return officerService.viewAllFarmers();
 	}
@@ -71,10 +97,11 @@ public class OfficerHomeController {
 	}
 
 	// View All Cultivations
-	@GetMapping(value = "/cultivations", produces = MediaType.TEXT_HTML_VALUE)
+	@GetMapping(value = "/cultivations")
 	public Collection<Cultivation> viewAllCultivations() {
 		return officerService.viewAllCultivations();
 	}
+	
 
 	// Add Cultivation Details
 	@PostMapping(value = "/cultivations", consumes = MediaType.APPLICATION_JSON_VALUE)

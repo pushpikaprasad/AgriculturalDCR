@@ -29,6 +29,8 @@ $(document).ready(function() {
 	$("#Login").modal({
 		dismissible : true
 	});
+	$('#viewFarmer').on('click', function() {
+	});
 });
 </script>
 
@@ -40,34 +42,78 @@ homePageDetails.controller('homePageData', function($scope, $http) {
 	
 	
 	var farmerNames = [];
-	$scope.getFarmerName = function(cultivationId){
+	/*$scope.getFarmerName = function(cultivationId){
 		var url = '/farmerName/'+cultivationId;
-		
+		farmerNames.pop();
 		$http.get(url).then(function(res) {
-			farmerNames.pop();
 			$scope.farmerName = res.data;
 			farmerNames.push($scope.farmerName);
+			console.log(farmerNames)
+		});	
+	};*/
+	
+	$scope.getFarmer = function(farmer_id){
+		var url = '/farmer/'+farmer_id;
+		$http.get(url).then(function(response) {
+			
+			$scope.Farmer = response.data;
+			$scope.fname = $scope.Farmer.farmerName;
+			$scope.fmobile = $scope.Farmer.farmerMobile;
+			
+			farmerNames.push($scope.Farmer.farmerName);
+			console.log(farmerNames)
+		});	
+		
+	};
+	
+	$scope.viewFarmerClick= function(farmerId){
+		$scope.viewfarmerId = farmerId;
+		var url = '/farmer/'+farmerId;
+		$http.get(url).then(function(response) {
+			
+			$scope.Farmer = response.data;
+			$scope.fname = $scope.Farmer.farmerName;
+			$scope.fmobile = $scope.Farmer.farmerMobile;
+			
 		});	
 	};
+	
 	
 	$scope.Getcultivation = function() {
 		$http.get('/').then(function(res) {
 			$scope.cultivations = res.data; 
 			for(var i in $scope.cultivations){
-				$scope.getFarmerName($scope.cultivations[i].cultivationId);
+				//$scope.getFarmerName($scope.cultivations[i].cultivationId);
+				$scope.getFarmer($scope.cultivations[i].farmerId);
 				console.log(farmerNames);
-				$scope.cultivations[i].farmerName = farmerNames;
+				$scope.cultivations[i].farmerName =farmerNames;
+				
 			}
 			
-			console.log($scope.cultivations);
+			//console.log($scope.cultivations);
 		});
 	};
 	
 	$http.get('/').then(function(res) {
 		$scope.Getcultivation();
-		
-		
 	});
+	
+	$scope.loginUser = function (username, password){
+		
+		var userData = {
+			username: username,
+			password: password
+		};
+		
+		$http.post('/login', JSON.stringify(userData)).then(function (response) {
+			if (response.userData)
+			console.log("Post login data submission successfully!");
+						
+			}, function (response) {	
+				$scope.Getcultivation();
+				console.log("Service not Exists");
+			});
+	};
 	
 });
 
@@ -123,15 +169,20 @@ homePageDetails.controller('homePageData', function($scope, $http) {
 						<th>Cultivation Type</th>
 						<th>Harvest Amount</th>
 						<th>Availability</th>
-						<th>Farmer Name</th>
-						<th>Location</th>			
+						<th>Location</th>
+						<th>Farmer Details</th>		
 					</tr>
-					<tr ng-repeat="i in cultivations | limitTo:2">
+					<tr ng-repeat="i in cultivations">
 						<td>{{i.cultivationType}}</td>
 						<td>{{i.harvestAmount}}</td>
 						<td>{{i.availability}}</td>
-						<td>{{i.farmerName[0]}}</td>
 						<td>{{i.location}}</td>
+						<td>
+						<a class="modal-trigger modal-close"
+						href="#viewFarmer" value="i.farmerId"
+						ng-click="viewFarmerClick(i.farmerId)">view</a>	
+						</td>
+						
 					</tr>
 				</table>
 				
@@ -139,6 +190,32 @@ homePageDetails.controller('homePageData', function($scope, $http) {
 			</div>
 		</div>
 	</div>
+	
+	<!--  view farmer -->
+	
+	<div id="viewFarmer" class="modal">
+				<div class="modal-content">
+					<div class="raw">
+					`	<div class="col s1 m1 l1">
+							<div class="right-align">
+								<button
+									class="modal-close btn waves-effect waves-light white black-text darken-1 ">
+									<i class="material-icons">close</i>
+								</button>
+							</div>
+						</div>
+						<div class="col s10 m10 l10">
+							<h5>Farmer Details</h5>
+						</div>
+					</div>
+					<p> 
+					<table>
+						<tr><td>Name</td><td>{{fname}}</td></tr>
+						<tr><td>Mobile</td><td>{{fmobile}}</td></tr>
+					</table>
+					</p>
+				</div>
+			</div>
 	
 	<div id="Login" class="modal">
 	<div class="modal-content">
@@ -148,14 +225,14 @@ homePageDetails.controller('homePageData', function($scope, $http) {
 				        <div class="row">
 				          <div class="input-field col s12">
 				            <i class="material-icons prefix">person_outline</i>
-				            <input class="validate" id="username" type="text">
+				            <input class="validate" id="username" type="text" ng-model="username">
 				            <label for="username" data-error="wrong" data-success="right">Username</label>
 				          </div>
 				        </div>
 				        <div class="row">
 				          <div class="input-field col s12">
 				            <i class="material-icons prefix">lock_outline</i>
-				            <input id="password" type="password">
+				            <input id="password" type="password" ng-model="password">
 				            <label for="password">Password</label>
 				          </div>
 				        </div>
@@ -167,8 +244,10 @@ homePageDetails.controller('homePageData', function($scope, $http) {
 				        </div> -->
 				        <div class="row">
 				          <div class="input-field col s12">
-				            <a href="#" class="btn waves-effect waves-light col s12">Login</a>
+				            <a href="#" class="btn waves-effect waves-light col s12" ng-click="loginUser(username, password)">Login</a>
+				            <span class="helper-text" data-error="wrong">${error}</span>
 				          </div>
+				          
 				        </div>
 				        <!--  <div class="row">
 				          <div class="input-field col s6 m6 l6">

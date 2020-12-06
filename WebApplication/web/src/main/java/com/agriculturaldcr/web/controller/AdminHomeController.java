@@ -53,9 +53,19 @@ public class AdminHomeController {
 			return modelAndView;
 		}
 		
+		// Admin manage-officer page
+				@GetMapping(value = { "/manage-farmers"}, produces = MediaType.TEXT_HTML_VALUE)
+				public ModelAndView FramerControlPage(String name, Model model) {
+					model.addAttribute("AdminId","1");
+					
+					ModelAndView modelAndView = new ModelAndView();
+					modelAndView.setViewName("admin-manage-farmers");
+					return modelAndView;
+				}
+		
 	// Admin settings page
 		@GetMapping(value = { "/settings"}, produces = MediaType.TEXT_HTML_VALUE)
-		public ModelAndView officerSettingsPage(String name, Model model) {
+		public ModelAndView adminSettingsPage(String name, Model model) {
 			model.addAttribute("AdminId","1");
 			
 			ModelAndView modelAndView = new ModelAndView();

@@ -14,10 +14,6 @@ public class OfficerDao {
 	@Autowired
 	public OfficerRepository officerRepository;
 
-	public Officer findOfficer(String username, String password) {
-		return officerRepository.findOffierByUsernameAndPassword(username, password);
-	}
-
 	public Collection<Officer> findAllOfficers() {
 		return officerRepository.findAll();
 	}

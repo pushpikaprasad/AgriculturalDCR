@@ -27,6 +27,9 @@ public class AdminService {
 	@Autowired
 	public OfficerDao officerDao;
 
+	
+	
+
 	// Admin logging
 	public Admin adminLoging(String username, String password) {
 		return adminDao.findAdmin(username, password);
@@ -43,7 +46,7 @@ public class AdminService {
 	}
 
 	// Update admin
-	public void updateAdmin(Admin admin) {
+	public void updateAdmin(Admin admin) {	
 		adminDao.updateAdmin(admin);
 	}
 
@@ -65,8 +68,8 @@ public class AdminService {
 	}
 
 	// Create officer account
-	public void createOfficerAccount(Officer newOffier) {
-		officerDao.addOfficer(newOffier);
+	public void createOfficerAccount(Officer newOfficer) {
+		officerDao.addOfficer(newOfficer);
 	}
 
 	// Manage officer account

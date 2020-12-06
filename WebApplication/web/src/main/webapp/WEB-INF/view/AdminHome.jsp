@@ -158,20 +158,8 @@
 
 			});
 
-			};
-		//Add form function	
-
-		//Update form function
-		
-		//delete function
-
-		
+			};		
 	});
-	
-	
-	
-	
-	
 	
 </script>
 
@@ -202,7 +190,8 @@
 			<li><div class="divider"></div></li>
 			<li><a  class="subheader">Manage</a></li>
 			<li><a class="waves-effect" href="/Admin/manage-officers">Officers</a></li>
-			<li><div class="divider"></div></li>
+			<li><a class="waves-effect" href="/Admin/manage-farmers">Farmers</a></li>
+			<li><a  class="subheader"></a></li>
 			<li><a class="waves-effect" href="/Admin/settings">Settings</a></li>
 		</ul>
 		
@@ -224,15 +213,16 @@
 				<div class="divider"></div>
 
 				<br>
-				<div class="card">
+				
+				<br>
 					<a
 						class="waves-effect waves-light btn modal-trigger modal-close  light-green darken-1"
 						href="#AddCultivation">Add cultivation<i
 						class="material-icons right">playlist_add</i></a>
 
-					<div class="divider"></div>
-					<br>
-					<div class="highlight">
+					
+					<br><br>
+					<div class="highlight z-depth-5">
 						<table>
 							<tr class="light-green accent-2">
 								<td>Cultivation ID</td>
@@ -266,7 +256,7 @@
 							</tr>
 						</table>
 					</div>
-				</div>
+				
 				<br>
 			</div>
 			<!-- End main session -->
