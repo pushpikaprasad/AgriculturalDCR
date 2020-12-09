@@ -254,7 +254,7 @@
 						<div class="row">
 							<div class="input-field col s12">
 								<input id="farmerId" name="farmerId" type="text" 
-									class="validate" ng-model="farmerId" pattern= "[0-9]"> <label
+									class="validate" ng-model="farmerId"> <label
 									for="farmerId">Farmer ID</label>
 							</div>
 						</div>	
