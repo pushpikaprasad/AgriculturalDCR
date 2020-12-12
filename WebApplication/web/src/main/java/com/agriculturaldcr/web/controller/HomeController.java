@@ -71,9 +71,10 @@ public class HomeController {
 	}
 
 	// View Farmer
-	@GetMapping(value = "/farmer/{farmerId}")
+	@GetMapping(value = "/farmer/{farmerId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Optional<Farmer> viewFarmer(@PathVariable("farmerId") int id) {
 		return adminService.viewFarmerById(id);
 	}
+	
 
 }

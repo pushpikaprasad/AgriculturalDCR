@@ -29,7 +29,10 @@ public class AdminHomeController {
 	@Autowired
 	AdminService adminService;
 
-	// Admin home page
+	
+	/*
+	 // Admin home page
+	 
 	@GetMapping(produces = MediaType.TEXT_HTML_VALUE)
 	public ModelAndView welcomePage(String name, Model model) {
 		System.out.print("Admin control : welcome page!");
@@ -37,11 +40,11 @@ public class AdminHomeController {
 		model.addAttribute("subtitle", "System Adiministrator Home Page");
 		model.addAttribute("message", "Welcome...!");
 		model.addAttribute("AdminId","1");
-		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("AdminHome");
 		return modelAndView;
 	}
+	*/
 	
 	// Admin manage-officer page
 		@GetMapping(value = { "/manage-officers"}, produces = MediaType.TEXT_HTML_VALUE)

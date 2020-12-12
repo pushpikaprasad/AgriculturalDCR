@@ -11,4 +11,6 @@ public interface AdminRepository extends MongoRepository<Admin, Integer> {
 
 	@Query("{username : ?0, password : ?1}")
 	Admin findAdminByUsernameAndPassword(String username, String password);
+	
+	
 }

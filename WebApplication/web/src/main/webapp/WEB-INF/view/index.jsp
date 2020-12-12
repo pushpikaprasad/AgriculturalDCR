@@ -98,15 +98,15 @@ homePageDetails.controller('homePageData', function($scope, $http) {
 		$scope.Getcultivation();
 	});
 	
-	$scope.loginUser = function (username, password){
+	$scope.loginUser = function (email, password){
 		
 		var userData = {
-			username: username,
+			email: email,
 			password: password
 		};
 		
 		$http.post('/login', JSON.stringify(userData)).then(function (response) {
-			if (response.userData)
+			if (response.data)
 			console.log("Post login data submission successfully!");
 						
 			}, function (response) {	
@@ -224,9 +224,9 @@ homePageDetails.controller('homePageData', function($scope, $http) {
 				        </div>
 				        <div class="row">
 				          <div class="input-field col s12">
-				            <i class="material-icons prefix">person_outline</i>
-				            <input class="validate" id="username" type="text" ng-model="username">
-				            <label for="username" data-error="wrong" data-success="right">Username</label>
+				            <i class="material-icons prefix">email_outline</i>
+				            <input class="validate" id="email" type="email" ng-model="email">
+				            <label for="email" data-error="wrong" data-success="right">Email</label>
 				          </div>
 				        </div>
 				        <div class="row">
@@ -244,7 +244,7 @@ homePageDetails.controller('homePageData', function($scope, $http) {
 				        </div> -->
 				        <div class="row">
 				          <div class="input-field col s12">
-				            <a href="#" class="btn waves-effect waves-light col s12" ng-click="loginUser(username, password)">Login</a>
+				            <a href="#" class="btn waves-effect waves-light col s12" ng-click="loginUser(email, password)">Login</a>
 				            <span class="helper-text" data-error="wrong">${error}</span>
 				          </div>
 				          

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.agriculturaldcr.web.entity.Admin;
 import com.agriculturaldcr.web.entity.Cultivation;
 import com.agriculturaldcr.web.entity.Farmer;
 import com.agriculturaldcr.web.entity.Officer;
@@ -28,7 +27,7 @@ public class OfficerHomeController {
 	@Autowired
 	public OfficerService officerService;
 
-	// Officer home page
+	/*// Officer home page
 	@GetMapping(produces = MediaType.TEXT_HTML_VALUE)
 	public ModelAndView welcomePage(String name, Model model) {
 		System.out.print("Officer control : welcome page!");
@@ -40,7 +39,8 @@ public class OfficerHomeController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("OfficerHome");
 		return modelAndView;
-	}
+	}*/
+	
 	// Officer manage-farmer page
 			@GetMapping(value = { "/manage-farmers"}, produces = MediaType.TEXT_HTML_VALUE)
 			public ModelAndView officerControlPage(String name, Model model) {

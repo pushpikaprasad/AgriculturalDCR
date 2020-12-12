@@ -7,5 +7,5 @@ import com.agriculturaldcr.web.entity.Officer;
 
 @Repository
 public interface OfficerRepository extends MongoRepository<Officer, Integer> {
-
+	
 }
