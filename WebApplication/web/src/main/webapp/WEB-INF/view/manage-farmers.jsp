@@ -253,8 +253,8 @@
 					<form>
 						<div class="row">
 							<div class="input-field col s12">
-								<input id="farmerId" name="farmerId" type="text" 
-									class="validate" ng-model="farmerId" pattern= "[0-9]"> <label
+								<input id="farmerId" name="farmerId" type="number" 
+									class="validate" ng-model="farmerId" > <label
 									for="farmerId">Farmer ID</label>
 							</div>
 						</div>	
@@ -303,10 +303,10 @@
 					<form>
 						<div class="row">
 							<div class="input-field col s12">
-								<input id="updatefarmerId" name="farmerId" type="text" 
+								<input id="updatefarmerId" name="farmerId" type="number" 
 									placeholder="updatefarmerId" 
 									value="updatefarmerId"
-									class="validate" ng-model="updatefarmerId" pattern= "[0-9]"> <label
+									class="validate" ng-model="updatefarmerId"> <label
 									for="updatefarmerId">Farmer ID</label>
 							</div>
 						</div>	
@@ -332,7 +332,7 @@
 							<button class="btn waves-effect waves-light modal-close"
 								type="submit" name="action" id="addAction"
 								ng-click="putFarmer(updatefarmerId,updatefarmerName,updatefarmerMobile)">
-								Add <i class="material-icons right">playlist_add</i>
+								Update <i class="material-icons right">playlist_add_check</i>
 							</button>
 						</div>
 					</form>

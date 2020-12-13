@@ -312,9 +312,9 @@
 							<div class="input-field col s6">
 								<p>
 									<label><input class="with-gap" name="availability"
-										type="radio" id="availabilityTrue" ng-model="availability" />
+										type="radio" value="true" id="availabilityTrue" ng-model="availability" />
 										<span>Available</span></label> <label><input class="with-gap"
-										name="availability" ng-model="availability" type="radio"
+										name="availability" ng-model="availability" type="radio" value="false"
 										id="availabilityFalse" /> <span>Not Available</span></label>
 								</p>
 							</div>
@@ -391,11 +391,11 @@
 							<div class="input-field col s6">
 								<p>
 									<label><input class="with-gap" name="availabilty"
-										placeholder="updateavailability" value="updateavailability"
+										placeholder="updateavailability" value="true"
 										ng-model="updateavailability" type="radio"
 										id="UpdateAvailabilityTrue" /> <span>Available</span></label> <label><input
 										class="with-gap" name="availabilty"
-										placeholder="updateavailability" value="updateavailability"
+										placeholder="updateavailability" value="false"
 										ng-model="updateavailability" type="radio"
 										id="UpdateAvailabilityFalse" /> <span>Not Available</span></label>
 								</p>

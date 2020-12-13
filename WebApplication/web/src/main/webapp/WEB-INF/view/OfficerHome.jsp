@@ -240,12 +240,12 @@
 									href="#UpdateCultivation" value="i.cultivationId"
 									ng-click="updateClick(i.cultivationId,i.cultivationType,i.harvestAmount,i.location, i.availability,i.farmerId )"><i
 										class="material-icons">edit</i></a></td>
-								<td><a
+								<!--  <td><a
 									class="waves-effect waves-light btn modal-trigger modal-close  red darken-1"
 									href="#DeleteCultivation" value="i.cultivationId"
 									ng-click="deleteClick(i.cultivationId)"><i
 										class="material-icons">delete</i></a></td>
-								<td"></td>
+								<td"></td>-->
 
 							</tr>
 						</table>
@@ -304,9 +304,9 @@
 							<div class="input-field col s12">
 								<p>
 									<label><input class="with-gap" name="availability"
-										type="radio" id="availabilityTrue" ng-model="availability" />
+										type="radio" value="true" id="availabilityTrue" ng-model="availability" />
 										<span>Available</span></label> <label><input class="with-gap"
-										name="availability" ng-model="availability" type="radio"
+										name="availability" ng-model="availability" type="radio" value="false"
 										id="availabilityFalse" /> <span>Not Available</span></label>
 								</p>
 							</div>
@@ -381,11 +381,11 @@
 							<div class="input-field col s12">
 								<p>
 									<label><input class="with-gap" name="availabilty"
-										placeholder="updateavailability" value="updateavailability"
+										placeholder="updateavailability" value="true"
 										ng-model="updateavailability" type="radio"
 										id="UpdateAvailabilityTrue" /> <span>Available</span></label> <label><input
 										class="with-gap" name="availabilty"
-										placeholder="updateavailability" value="updateavailability"
+										placeholder="updateavailability" value="false"
 										ng-model="updateavailability" type="radio"
 										id="UpdateAvailabilityFalse" /> <span>Not Available</span></label>
 								</p>
